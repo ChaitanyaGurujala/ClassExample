@@ -1,0 +1,5 @@
+### 
+GET http://localhost:4004/odata/v4/catalog/Books
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=title eq 'TEST TEST'
