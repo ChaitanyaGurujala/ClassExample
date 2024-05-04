@@ -7,9 +7,20 @@ using {
 
 namespace sap.capire.bookshop;
 
-type  stringX : String(32);
+type stringX     : String(32);
 
-type AmountT : Decimal(15, 2) @(
+type Gender      : String(1) enum {
+  male         = 'M';
+  female       = 'F';
+  nonBinary    = 'N';
+  noDisclosure = 'D';
+  selfDescribe = 'S';
+};
+
+type PhoneNumber : String(30) @assert.format: '^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$';
+type Email       : String(255) @assert.format: '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$';
+
+type AmountT     : Decimal(15, 2) @(
   Semantics.amount.currencyCode: 'CURRENCY_CODE',
   sap.unit                     : 'CURRENCY_CODE'
 );
@@ -86,4 +97,21 @@ entity poitems : cuid, Amount {
   PO_ITEM_POS  : Integer;
   PRODUCT_GUID : Association to product;
 
+}
+
+entity employees : cuid {
+  nameFirst     : String(40);
+  nameMiddle    : String(40);
+  nameLast      : String(40);
+  nameInitials  : String(40);
+  sex           : Gender;
+  language      : String(1);
+  phoneNumber   : PhoneNumber;
+  email         : Email;
+  loginName     : String(12);
+  Currency      : Currency;
+  salaryAmount  : AmountT;
+  accountNumber : String(16);
+  bankId        : String(20);
+  bankName      : String(64);
 }
