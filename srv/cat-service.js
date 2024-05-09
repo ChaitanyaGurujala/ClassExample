@@ -1,7 +1,7 @@
 
 class CatalogService extends cds.ApplicationService {
-    init() {
-
+    init() { // Srinivas
+ 
         const { Books } = cds.entities('sap.capire.bookshop');
         const { employees } = cds.entities("sap.capire.bookshop");
         const { v4: uuidv4 } = require('uuid');
